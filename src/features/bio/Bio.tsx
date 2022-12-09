@@ -1,49 +1,51 @@
 import { useState } from "react";
-import { NombresSimpsons, INFO_SIMPSONS } from "./constants";
-import styles from "./styles.module.css";
+import { SimpsonsNames, INFO_SIMPSONS } from "./constants";
+import {
+	BioContainerWrapper,
+	BioButtonContainerWrapper,
+	BioImageWrapper,
+	BioDescriptionWrapper,
+	BioNameWrapper,
+	BioButtonWrapper 
+} from "./bio.styles";
 
 const Bio = () => {
-  const [bioActiva, setBioActiva] = useState(
-    INFO_SIMPSONS[NombresSimpsons.BART]
-  );
+	const [activeBio, setActiveBio] = useState(
+		INFO_SIMPSONS[SimpsonsNames.BART]
+	);
 
-  const onClick: (nombre: NombresSimpsons) => void = (nombre) =>
-    setBioActiva(INFO_SIMPSONS[nombre]);
+	const onClick: (name: SimpsonsNames) => void = (name) =>
+		setActiveBio(INFO_SIMPSONS[name]);
 
-  const crearBotones = () => {
-    return Object.keys(INFO_SIMPSONS).map((nombre: string) => (
-      <button
-        key={nombre as string}
-        onClick={() => onClick(nombre as NombresSimpsons)}
-        className={
-          bioActiva.id === nombre
-            ? styles.botonBioActivo
-            : styles.botonBioInactivo
-        }
-      >
-        {nombre}
-      </button>
-    ));
-  };
+	const createButtons = () => {
+		return Object.keys(INFO_SIMPSONS).map((name: string) => (
+			<BioButtonWrapper
+				key={name as string}
+				onClick={() => onClick(name as SimpsonsNames)}
+				isActive={activeBio.id === name}
+			>
+				{name}
+			</BioButtonWrapper>
+		));
+	};
 
-  return (
-    <div className={styles.bioContainer}>
-      <div className={styles.contenedorBotones}>{crearBotones()}</div>
-      <div>
-        <div>
-          <img
-            src={bioActiva.image}
-            alt={bioActiva.nombre}
-            className={styles.bioImagen}
-          />
-        </div>
-        <div>
-          <h3 className={styles.bioNombre}>{bioActiva.nombre}</h3>
-          <p className={styles.bioDescripcion}>{bioActiva.descripcion}</p>
-        </div>
-      </div>
-    </div>
-  );
+	return (
+		<BioContainerWrapper>
+			<BioButtonContainerWrapper>{createButtons()}</BioButtonContainerWrapper>
+			<div>
+				<div>
+					<BioImageWrapper
+						src={activeBio.image}
+						alt={activeBio.name}
+					/>
+				</div>
+				<div>
+					<BioNameWrapper>{activeBio.name}</BioNameWrapper>
+					<BioDescriptionWrapper>{activeBio.description}</BioDescriptionWrapper>
+				</div>
+			</div>
+		</BioContainerWrapper>
+	);
 };
 
 export default Bio;

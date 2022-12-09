@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const ContenedorCita = styled.div`
+export const QuoteContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +15,7 @@ export const ContenedorCita = styled.div`
   background-color: whitesmoke;
 `;
 
-export const TextoCita = styled.p`
+export const QuoteText = styled.p`
   font-size: 2rem;
   font-weight: bold;
   color: #333;
@@ -24,7 +24,7 @@ export const TextoCita = styled.p`
   min-height: 5rem;
 `;
 
-export const AutorCita = styled.p`
+export const QuoteAuthor = styled.p`
   font-size: 1.7rem;
   font-weight: bold;
   color: #333;
@@ -44,7 +44,7 @@ export const Input = styled.input`
   font-family: "Homer Simpson Revised", sans-serif;
 `;
 
-export const Boton = styled.button<{ secondary?: boolean }>`
+export const Button = styled.button<{ secondary?: boolean }>`
   width: 45%;
   min-width: 250px;
   height: 50px;
@@ -61,15 +61,15 @@ export const Boton = styled.button<{ secondary?: boolean }>`
   }
 
   ${(props) =>
-    props.secondary
-      ? css`
+		props.secondary
+			? css`
           background-color: #d1b07d;
           color: whitesmoke;
           text-shadow: 2px 2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000,
             -2px -2px 0 #000000, 2px 0px 0 #000000, 0px 2px 0 #000000,
             -2px 0px 0 #000000, 0px -2px 0 #000000;
         `
-      : css`
+			: css`
           background-color: #fdd835;
           color: whitesmoke;
           text-shadow: 2px 2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000,
